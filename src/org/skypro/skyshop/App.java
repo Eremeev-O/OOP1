@@ -15,18 +15,29 @@ public class App {
         productBasket.addProduct("Семечки", 60);
         productBasket.addProduct("Орехи", 90);
 
-
-
+        System.out.println();
         System.out.println("Выводим перечень продуктов в корзине");
         productBasket.printAllProductBasket();
 
+        System.out.println();
+        System.out.println("Отдельный вывод стоимости корзины");
+        System.out.println(productBasket.basketCost());
+
+        System.out.println();
         System.out.println("Ищем Печенье  - " + productBasket.findProduct("Печенье"));
 
+        System.out.println();
         System.out.println("Очищаем корзину");
         productBasket.basketCleaning();
+
+        System.out.println();
         System.out.println("Выводим перечень продуктов в корзине");
         productBasket.printAllProductBasket();
+
+        System.out.println();
         System.out.println("Считаем стоимость товара в пустой корзине: " + productBasket.basketCost());
+
+        System.out.println();
         System.out.println("Ищем товар в пустой корзине. Например: Спички = " + productBasket.findProduct("Спички"));
 
 
