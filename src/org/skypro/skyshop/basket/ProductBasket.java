@@ -11,7 +11,7 @@ public class ProductBasket {
 
     public void addProduct(String name, int cost) {
         for (int i = 0; i < this.products.length; i++) {
-            if (this.products[i] == null) {
+            if (this.products[i] == null && cost > 0) {
                 Product newProduct = new Product(name, cost);
                 this.products[i] = newProduct;
                 return;
@@ -23,7 +23,6 @@ public class ProductBasket {
         int num = 0;
         for (int i = 0; i < this.products.length; i++) {
             if (this.products[i] != null) {
-                Product product = this.products[i];
                 System.out.println(this.products[i].toString());
             } else {
                 num++;
@@ -46,7 +45,7 @@ public class ProductBasket {
     }
     public boolean findProduct (String name) {
         for (int i = 0; i < this.products.length; i++) {
-            if (this.products[i] != null && this.products[i].getName().equals(name)) {
+            if (this.products[i] != null && this.products[i].getName().equals(name.toLowerCase())) {
                 return true;
             }
         }

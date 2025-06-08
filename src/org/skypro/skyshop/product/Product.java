@@ -5,7 +5,7 @@ public class Product {
     private int cost;
 
     public Product(String name, int cost) {
-        this.name = name;
+        this.name = name.toLowerCase();
         this.cost = cost;
     }
 

@@ -13,14 +13,14 @@ public class App {
         productBasket.addProduct("Печенье", 30);
         productBasket.addProduct("Конфеты", 200);
         productBasket.addProduct("Семечки", 60);
-        productBasket.addProduct("Семечки", 90);
+        productBasket.addProduct("Орехи", 90);
 
 
 
         System.out.println("Выводим перечень продуктов в корзине");
         productBasket.printAllProductBasket();
 
-        System.out.println("Ищем Семечки - " + productBasket.findProduct("Семечки"));
+        System.out.println("Ищем Печенье  - " + productBasket.findProduct("Печенье"));
 
         System.out.println("Очищаем корзину");
         productBasket.basketCleaning();
