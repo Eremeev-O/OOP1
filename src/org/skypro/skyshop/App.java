@@ -6,14 +6,15 @@ public class App {
     public static void main(String[] args) {
         ProductBasket productBasket = new ProductBasket();
 
-        System.out.println("Вводим продукты в корзину:");
-        productBasket.addProduct("Мороженое", 100);
-        productBasket.addProduct("Пироженое", 110);
-        productBasket.addProduct("Твороженое", 120);
-        productBasket.addProduct("Печенье", 30);
-        productBasket.addProduct("Конфеты", 200);
-        productBasket.addProduct("Семечки", 60);
-        productBasket.addProduct("Орехи", 90);
+        System.out.println("Заполняем перечень возможных продуктов:");
+        org.skypro.skyshop.basket.Basket.basket();
+
+        System.out.println("Добавляем продукты в корзину:");
+        productBasket.addProduct("орехи");
+        productBasket.addProduct("твороженое");
+        productBasket.addProduct("пироженое");
+        System.out.println("Попробуем добавить продукт, которого нет в списке - Курица");
+        productBasket.addProduct("курица");
 
         System.out.println();
         System.out.println("Выводим перечень продуктов в корзине");
@@ -24,11 +25,22 @@ public class App {
         System.out.println(productBasket.basketCost());
 
         System.out.println();
+        System.out.println("Добавляем еще два продукта и один сверх лимита продуктов в корзине:");
+        productBasket.addProduct("семечки");
+        productBasket.addProduct("орехи");
+        productBasket.addProduct("Лимонад");
+
+        System.out.println();
+        System.out.println("Выводим перечень продуктов в корзине");
+        productBasket.printAllProductBasket();
+
+
+        System.out.println();
         System.out.println("Ищем Печенье  - " + productBasket.findProduct("Печенье"));
 
         System.out.println();
         System.out.println("Очищаем корзину");
-        productBasket.basketCleaning();
+         productBasket.basketCleaning();
 
         System.out.println();
         System.out.println("Выводим перечень продуктов в корзине");

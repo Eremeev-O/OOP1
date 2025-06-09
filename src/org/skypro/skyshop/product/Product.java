@@ -1,8 +1,8 @@
 package org.skypro.skyshop.product;
 
 public class Product {
-    private String name;
-    private int cost;
+    private final String name;
+    private final int cost;
 
     public Product(String name, int cost) {
         this.name = name.toLowerCase();
