@@ -3,24 +3,23 @@ package org.skypro.skyshop.basket;
 import org.skypro.skyshop.product.Product;
 
 public class ProductBasket {
-    final Product[] products;
-    static final Product[] productList = new Product[7];
+    private final Product[] products;
 
     public ProductBasket() {
         this.products = new Product[5];
     }
 
-    public void addProduct(String name) {
+    public void addProduct(Product productList) {
         for (int i = 0; i < this.products.length; i++) {
-            if (this.products[i] == null && findProductList(name) && findProductListID(name)>0) {
-                this.products[i] = productList[findProductListID(name)];
-                return;
+            if (this.products[i] == null) {
+                this.products[i] = productList;
+                    return;
             }
         }
         System.out.println("Невозможно добавить продукт");
     }
 
-    public static void addProductList(String name, int cost) {
+    public void addProductList(String name, int cost, Product[] productList) {
         for (int i = 0; i < productList.length; i++) {
             if (productList[i] == null && cost > 0) {
                 Product newProduct = new Product(name, cost);
@@ -67,23 +66,6 @@ public class ProductBasket {
             }
         }
         return false;
-    }
-
-    public boolean findProductList (String name) {
-        for (int i = 0; i < productList.length; i++) {
-            if (productList[i] != null && productList[i].getName().equals(name.toLowerCase())) {
-                return true;
-            }
-        }
-        return false;
-    }
-    public int findProductListID(String name) {
-        for (int i = 0; i < productList.length; i++) {
-            if (productList[i] != null && productList[i].getName().equals(name.toLowerCase())) {
-                return i;
-            }
-        }
-        return -1;
     }
 
     public void basketCleaning() {
