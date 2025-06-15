@@ -26,21 +26,26 @@ public class ProductBasket {
     //  с продуктами в корзине.
     public void printAllProductBasket() {
         int num = 0;
+        int quantity = 0;
         for (int i = 0; i < this.products.length; i++) {
             if (this.products[i] != null) {
                 System.out.println(this.products[i].toString());
+                if (this.products[i].isSpecial()) {
+                    quantity++;
+                }
             } else {
                 num++;
             }
         }
         if (num != this.products.length) {
             System.out.println("Итого: " + basketCost());
+            System.out.println("Специальных товаров: " + quantity);
         } else {
             System.out.println("в корзине пусто");
         }
     }
-    public int basketCost() {
-        int summ = 0;
+    public float basketCost() {
+        float summ = 0f;
         for (int i = 0; i < this.products.length; i++) {
             if (this.products[i] != null) {
                 summ += this.products[i].getCost();
