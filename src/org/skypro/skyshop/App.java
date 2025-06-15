@@ -6,20 +6,11 @@ import org.skypro.skyshop.product.Product;
 public class App {
     public static void main(String[] args) {
         ProductBasket productBasket = new ProductBasket();
-        Product[] productList = new Product[7];
-
-        productBasket.addProductList("Мороженое", 100, productList);
-        productBasket.addProductList("Пироженое", 110, productList);
-        productBasket.addProductList("Твороженое", 120, productList);
-        productBasket.addProductList("Печенье", 30, productList);
-        productBasket.addProductList("Конфеты", 200, productList);
-        productBasket.addProductList("Семечки", 60, productList);
-        productBasket.addProductList("Орехи", 90, productList);
 
         System.out.println("Добавляем продукты в корзину:");
-        productBasket.addProduct(productList[0]);
-        productBasket.addProduct(productList[2]);
-        productBasket.addProduct(productList[1]);
+        productBasket.addProduct(new Product("Мороженое", 100));
+        productBasket.addProduct(new Product("Пироженое", 110));
+        productBasket.addProduct(new Product("Твороженое", 120));
 
         System.out.println();
         System.out.println("Выводим перечень продуктов в корзине");
@@ -31,9 +22,9 @@ public class App {
 
         System.out.println();
         System.out.println("Добавляем еще два продукта и один сверх лимита продуктов в корзине:");
-        productBasket.addProduct(productList[5]);
-        productBasket.addProduct(productList[6]);
-        productBasket.addProduct(productList[3]);
+        productBasket.addProduct(new Product("Семечки", 60));
+        productBasket.addProduct(new Product("Орехи", 90));
+        productBasket.addProduct(new Product("Печенье", 30));
 
         System.out.println();
         System.out.println("Выводим перечень продуктов в корзине");
@@ -42,6 +33,7 @@ public class App {
 
         System.out.println();
         System.out.println("Ищем Печенье  - " + productBasket.findProduct("Печенье"));
+        System.out.println("Ищем Орехи  - " + productBasket.findProduct("Орехи"));
 
         System.out.println();
         System.out.println("Очищаем корзину");

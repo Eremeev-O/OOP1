@@ -9,25 +9,14 @@ public class ProductBasket {
         this.products = new Product[5];
     }
 
-    public void addProduct(Product productList) {
+    public void addProduct(Product product) {
         for (int i = 0; i < this.products.length; i++) {
             if (this.products[i] == null) {
-                this.products[i] = productList;
+                this.products[i] = product;
                     return;
             }
         }
         System.out.println("Невозможно добавить продукт");
-    }
-
-    public void addProductList(String name, int cost, Product[] productList) {
-        for (int i = 0; i < productList.length; i++) {
-            if (productList[i] == null && cost > 0) {
-                Product newProduct = new Product(name, cost);
-                productList[i] = newProduct;
-                return;
-            }
-        }
-        System.out.println("Невозможно добавить продукт в список продуктов");
     }
 
     //  Логика распечатывания содержимого корзины работает от обратного. Если есть запись в массиве, то переменная num
