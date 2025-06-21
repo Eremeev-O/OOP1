@@ -12,15 +12,15 @@ public class DiscountedProduct extends Product{
     public int getDiscount(){
         return this.discount;
     }
-@Override
+    @Override
     public float getCost(){
         return this.cost * (1 - (float) this.getDiscount()/100);
     }
-@Override
+    @Override
     public String toString() {
         return this.getName() + " : " + getCost() + " (скидка " + getDiscount() + "%)";
     }
-@Override
+    @Override
     public boolean isSpecial(){
         return true;
     }

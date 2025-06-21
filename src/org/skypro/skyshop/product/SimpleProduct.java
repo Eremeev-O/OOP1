@@ -7,16 +7,16 @@ public class SimpleProduct extends Product{
         super(name);
         this.cost = cost;
     }
-@Override
+    @Override
     public float getCost(){
         return this.cost;
     }
 
-@Override
+    @Override
     public String toString() {
         return this.getName() + " : " + getCost();
     }
-@Override
+    @Override
     public boolean isSpecial(){
         return false;
         }

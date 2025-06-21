@@ -6,15 +6,15 @@ public class FixPriceProduct extends Product{
     public FixPriceProduct(String name){
         super(name);
     }
-@Override
+    @Override
     public float getCost(){
         return COST;
     }
-@Override
+    @Override
     public String toString() {
         return this.getName() + " : " + getCost() + " : Фиксированная цена " + COST;
     }
-@Override
+    @Override
     public boolean isSpecial(){
         return true;
     }
