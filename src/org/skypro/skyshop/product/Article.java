@@ -10,7 +10,7 @@ public class Article implements Searchable {
     }
     @Override
     public String toString() {
-        return this.getArticleTitle() + " " + this.getArticleText();
+        return this.getArticleTitle() + "/n" + this.getArticleText();
     }
 
     public String getArticleTitle() {
