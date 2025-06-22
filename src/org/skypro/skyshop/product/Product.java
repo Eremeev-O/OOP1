@@ -1,5 +1,7 @@
 package org.skypro.skyshop.product;
 
+import org.skypro.skyshop.searchengine.Searchable;
+
 public abstract class Product implements Searchable {
     private final String name;
 
@@ -15,7 +17,7 @@ public abstract class Product implements Searchable {
 
     public abstract float getCost();
 
-    public String searchTerm(){
+    public String getSearchTerm(){
         return this.getName();
     }
 
