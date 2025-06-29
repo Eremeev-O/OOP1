@@ -5,6 +5,9 @@ public class SimpleProduct extends Product{
 
     public SimpleProduct (String name, float cost){
         super(name);
+        if (cost <= 0) {
+            throw new IllegalArgumentException("Цена заводимого товара меньше или равна нулю");
+        }
         this.cost = cost;
     }
     @Override

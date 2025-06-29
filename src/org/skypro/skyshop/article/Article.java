@@ -2,6 +2,8 @@ package org.skypro.skyshop.article;
 
 import org.skypro.skyshop.searchengine.Searchable;
 
+import java.text.MessageFormat;
+
 public class Article implements Searchable {
     private final String articleTitle;
     private final String articleText;
@@ -21,7 +23,7 @@ public class Article implements Searchable {
     }
     @Override
     public String toString() {
-        return this.getArticleTitle() + "/n" + this.getArticleText();
+        return this.getArticleTitle() + "\r\n" + this.getArticleText();
     }
 
     public String getSearchTerm() {
