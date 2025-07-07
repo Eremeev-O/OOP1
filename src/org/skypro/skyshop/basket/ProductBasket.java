@@ -51,7 +51,7 @@ public class ProductBasket {
         return false;
     }
 
-    public ArrayList delProduct(String name) {
+    public List<Product> delProduct(String name) {
         List<Product> list = new ArrayList<>();
         Iterator<Product> iterator = products.iterator();
 
@@ -62,7 +62,7 @@ public class ProductBasket {
                 iterator.remove();
             }
         }
-        return (ArrayList) list;
+        return list;
     }
 
     public void basketCleaning() {

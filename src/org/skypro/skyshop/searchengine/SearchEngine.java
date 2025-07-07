@@ -7,7 +7,7 @@ import java.util.List;
 public class SearchEngine {
     List<Searchable> searchable = new ArrayList<>();
 
-    public ArrayList search(String srchText){
+    public List<Searchable> search(String srchText){
         List<Searchable> list = new ArrayList<>();
         Iterator<Searchable> iteratorSearch = searchable.iterator();
 
@@ -17,13 +17,13 @@ public class SearchEngine {
                 list.add(element);
             }
         }
-        return (ArrayList) list;
+        return list;
     }
 
     public void add(Searchable obj){
             searchable.add(obj);
     }
-    public void printSearch(ArrayList obj){
+    public void printSearch(List<Searchable> obj){
         Iterator printSearch = obj.iterator();
         while (printSearch.hasNext()) {
             Searchable element = (Searchable) printSearch.next();
