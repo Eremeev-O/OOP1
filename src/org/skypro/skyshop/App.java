@@ -28,7 +28,7 @@ public class App{
         System.out.println(productBasket.basketCost());
 
         System.out.println();
-        System.out.println("Выводим перечень продуктов в корзине");
+        System.out.println("Выводим перечень продуктов в корзине:");
         productBasket.printAllProductBasket();
 
 
