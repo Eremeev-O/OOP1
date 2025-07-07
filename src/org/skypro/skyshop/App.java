@@ -14,6 +14,10 @@ public class App{
         productBasket.addProduct(new SimpleProduct("Мороженое", 100));
         productBasket.addProduct(new DiscountedProduct("Пироженое", 110, 15));
         productBasket.addProduct(new FixPriceProduct("Твороженое"));
+        productBasket.addProduct(new SimpleProduct("Орехи", 100));
+        productBasket.addProduct(new SimpleProduct("Семечки", 60));
+        productBasket.addProduct(new DiscountedProduct("Орехи", 90, 20));
+        productBasket.addProduct(new SimpleProduct("Печенье", 30));
 
         System.out.println();
         System.out.println("Выводим перечень продуктов в корзине");
@@ -22,12 +26,6 @@ public class App{
         System.out.println();
         System.out.println("Отдельный вывод стоимости корзины");
         System.out.println(productBasket.basketCost());
-
-        System.out.println();
-        System.out.println("Добавляем еще два продукта и один сверх лимита продуктов в корзине:");
-        productBasket.addProduct(new SimpleProduct("Семечки", 60));
-        productBasket.addProduct(new DiscountedProduct("Орехи", 90, 20));
-        productBasket.addProduct(new SimpleProduct("Печенье", 30));
 
         System.out.println();
         System.out.println("Выводим перечень продуктов в корзине");
@@ -50,11 +48,11 @@ public class App{
         System.out.println("Считаем стоимость товара в пустой корзине: " + productBasket.basketCost());
 
         System.out.println();
-        System.out.println("Ищем товар в пустой корзине. Например: Спички = " + productBasket.findProduct("Спички"));
+        System.out.println("Ищем товар в пустой корзине. Например: Орехи = " + productBasket.findProduct("Орехи"));
 
         System.out.println();
         System.out.println("Создаем объекты SearchEngine и Article:");
-        SearchEngine searchEngine = new SearchEngine(24);
+        SearchEngine searchEngine = new SearchEngine();
         searchEngine.add(new SimpleProduct("Мороженое", 100));
         searchEngine.add(new DiscountedProduct("Пироженое", 110, 15));
         searchEngine.add(new FixPriceProduct("Твороженое"));
@@ -70,7 +68,6 @@ public class App{
         searchEngine.add(new Article("Ozon", "Закажи, оплати, дождись, забери, убедись что не подходит - выкинь!"));
         searchEngine.add(new Article("Полет птицы", "Статья про сложное строение перьев у пернатых."));
         searchEngine.add(new Article("Огородные вредители", "Купил перегной - беги за препаратами от вредителей! :)"));
-
 
         System.out.println();
         System.out.println("Демонстрация поиска и вывода результата:");
@@ -101,6 +98,35 @@ public class App{
 
         } catch (BestResultNotFound e) {
             System.out.println(e);
+        }
+
+        System.out.println();
+        System.out.println("Добавляем продукты в корзину:");
+        productBasket.addProduct(new SimpleProduct("Мороженое", 100));
+        productBasket.addProduct(new DiscountedProduct("Пироженое", 110, 15));
+        productBasket.addProduct(new FixPriceProduct("Твороженое"));
+        productBasket.addProduct(new SimpleProduct("Орехи", 100));
+        productBasket.addProduct(new SimpleProduct("Семечки", 60));
+        productBasket.addProduct(new DiscountedProduct("Орехи", 90, 20));
+        productBasket.addProduct(new SimpleProduct("Печенье", 30));
+
+        System.out.println();
+        System.out.println("Выводим перечень продуктов в корзине");
+        productBasket.printAllProductBasket();
+
+        System.out.println();
+        System.out.println("Удаляем продукты:");
+        System.out.println(productBasket.delProduct("Орехи"));
+
+
+        System.out.println();
+        System.out.println("Выводим перечень продуктов в корзине");
+        productBasket.printAllProductBasket();
+
+        System.out.println();
+        System.out.println("Удаляем несуществующие продукты:");
+        if (productBasket.delProduct("Пасатижи").isEmpty()) {
+            System.out.println("Список пуст");
         }
     }
 }

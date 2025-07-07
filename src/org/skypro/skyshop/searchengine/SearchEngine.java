@@ -1,43 +1,34 @@
 package org.skypro.skyshop.searchengine;
 
-import org.skypro.skyshop.product.DiscountedProduct;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class SearchEngine {
-    private Searchable[] searchable;
+    List<Searchable> searchable = new ArrayList<>();
 
-    public SearchEngine(int count){
-        this.searchable = new Searchable[count];
-    }
+    public ArrayList search(String srchText){
+        List<Searchable> list = new ArrayList<>();
+        Iterator<Searchable> iteratorSearch = searchable.iterator();
 
-    public Searchable[] search(String srchText){
-        Searchable[] srchEng = new Searchable[5];
-        int id = 0;
-        for (Searchable obj: searchable) {
-            if (obj != null && obj.toString().contains(srchText)) {
-                srchEng[id] = obj;
-                id++;
-                if (id == 5) {
-                    break;
-                }
+        while (iteratorSearch.hasNext()) {
+            Searchable element = iteratorSearch.next();
+            if (element != null &&  element.toString().contains(srchText)) {
+                list.add(element);
             }
         }
-        return srchEng;
+        return (ArrayList) list;
     }
 
     public void add(Searchable obj){
-        for (int i = 0; i < this.searchable.length; i++) {
-            if (this.searchable[i] == null) {
-                this.searchable[i] = obj;
-                return;
-            }
-        }
-        System.out.println("Невозможно добавить продукт");
+            searchable.add(obj);
     }
-    public void printSearch(Searchable[] obj){
-        for (Searchable value : obj) {
-            if (value != null) {
-                System.out.println(value.getStringRepresentation());
-                return;
+    public void printSearch(ArrayList obj){
+        Iterator printSearch = obj.iterator();
+        while (printSearch.hasNext()) {
+            Searchable element = (Searchable) printSearch.next();
+            if (element != null) {
+                System.out.println(element.getStringRepresentation());
             }
         }
     }
