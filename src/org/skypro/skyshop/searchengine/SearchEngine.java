@@ -1,37 +1,40 @@
 package org.skypro.skyshop.searchengine;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class SearchEngine {
     List<Searchable> searchable = new ArrayList<>();
 
-    public List<Searchable> search(String srchText){
-        List<Searchable> list = new ArrayList<>();
+    public void add(Searchable obj){
+        searchable.add(obj);
+    }
+    public TreeMap<String, Searchable> search(String srchText){
+        int num = 0;
+        TreeMap<String, Searchable> tempTree = new TreeMap<>();
         Iterator<Searchable> iteratorSearch = searchable.iterator();
 
         while (iteratorSearch.hasNext()) {
             Searchable element = iteratorSearch.next();
             if (element != null &&  element.toString().contains(srchText)) {
-                list.add(element);
+                if (!tempTree.containsKey(element.getSearchTerm())){
+                    tempTree.put(element.getSearchTerm(), element);
+                } else {
+                    num++;
+                    tempTree.put(element.getSearchTerm() + "_" + num, element);
+                }
             }
         }
-        return list;
+        return tempTree;
     }
 
-    public void add(Searchable obj){
-            searchable.add(obj);
-    }
-    public void printSearch(List<Searchable> obj){
-        Iterator printSearch = obj.iterator();
-        while (printSearch.hasNext()) {
-            Searchable element = (Searchable) printSearch.next();
+    public void printSearch(TreeMap<String, Searchable> obj){
+        for (Map.Entry<String, Searchable> element: obj.entrySet()) {
             if (element != null) {
-                System.out.println(element.getStringRepresentation());
+                System.out.println(element.getValue().getStringRepresentation());
             }
         }
     }
+
     public Searchable theMostSuitable(String string){
         int count;
         int index;

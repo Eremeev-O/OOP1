@@ -2,76 +2,75 @@ package org.skypro.skyshop.basket;
 
 import org.skypro.skyshop.product.Product;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class ProductBasket {
-    List<Product> products = new ArrayList<>();
+    Map<String, List<Product>> products = new LinkedHashMap<>();
 
     public void addProduct(Product product) {
-        products.add(product);
+        List<Product> list = new ArrayList<>();
+        if ((products.get(product.getName()) == null)) {
+            list.add (product);
+            products.put(product.getName(), list);
+        } else {
+            list = products.get(product.getName());
+            list.add(product);
+            products.put(product.getName(), list);
+        }
     }
 
     public void printAllProductBasket() {
-        int num = 0;
         int quantity = 0;
-        for (int i = 0; i < this.products.size(); i++) {
-            if (this.products.get(i) != null) {
-                System.out.println(products.get(i).toString());
-                if (this.products.get(i).isSpecial()) {
-                    quantity++;
+        for (Map.Entry<String, List<Product>> element: products.entrySet()){
+            if (element.getValue() != null) {
+                for (Product value: element.getValue()){
+                    System.out.println(value.toString());
+                    if (value.isSpecial()) {
+                        quantity++;
+                    }
                 }
-            } else {
-                num++;
             }
         }
-        if (num != this.products.size()) {
+        if (!this.products.isEmpty()) {
             System.out.println("Итого: " + basketCost());
             System.out.println("Специальных товаров: " + quantity);
         } else {
             System.out.println("в корзине пусто");
         }
     }
+
     public float basketCost() {
         float summ = 0f;
-        for (int i = 0; i < this.products.size(); i++) {
-            if (this.products.get(i) != null) {
-                summ += this.products.get(i).getCost();
+        for (Map.Entry<String, List<Product>> element: products.entrySet()){
+            if (element.getValue() != null) {
+                for (Product value: element.getValue()){
+                    summ += value.getCost();
+                }
             }
         }
         return summ;
     }
+
     public boolean findProduct (String name) {
-        for (int i = 0; i < this.products.size(); i++) {
-            if (this.products.get(i) != null && this.products.get(i).getName().equals(name)) {
-                return true;
-            }
+        if (products.containsKey(name)) {
+            return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
     public List<Product> delProduct(String name) {
         List<Product> list = new ArrayList<>();
-        Iterator<Product> iterator = products.iterator();
-
-        while (iterator.hasNext()) {
-            Product element = iterator.next();
-            if (element != null &&  element.getName().equals(name)) {
-                list.add(element);
-                iterator.remove();
-            }
+        if (products.containsKey(name)) {
+            List<Product> element = products.get(name);
+            list.addAll(element);
+            products.remove(name);
         }
         return list;
     }
 
     public void basketCleaning() {
-        Iterator<Product> iteratorForBasketCleaning = products.iterator();
-        while (iteratorForBasketCleaning.hasNext()) {
-            if (iteratorForBasketCleaning.next() != null) {
-                iteratorForBasketCleaning.remove();
-            }
-        }
+        products.clear();
     }
 }
 

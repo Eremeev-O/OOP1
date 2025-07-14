@@ -28,12 +28,7 @@ public class App{
         System.out.println(productBasket.basketCost());
 
         System.out.println();
-        System.out.println("Выводим перечень продуктов в корзине:");
-        productBasket.printAllProductBasket();
-
-
-        System.out.println();
-        System.out.println("Ищем Печенье  - " + productBasket.findProduct("Печенье"));
+        System.out.println("Ищем Бублик  - " + productBasket.findProduct("Бублик"));
         System.out.println("Ищем Орехи  - " + productBasket.findProduct("Орехи"));
 
         System.out.println();
@@ -57,8 +52,9 @@ public class App{
         searchEngine.add(new DiscountedProduct("Пироженое", 110, 15));
         searchEngine.add(new FixPriceProduct("Твороженое"));
         searchEngine.add(new SimpleProduct("Семечки", 60));
-        searchEngine.add(new DiscountedProduct("Орехи", 90, 20));
+        searchEngine.add(new DiscountedProduct("Кешью - орехи", 90, 20));
         searchEngine.add(new SimpleProduct("Печенье", 30));
+        searchEngine.add(new SimpleProduct("Фундук - орехи", 100));
 
         searchEngine.add(new Article("Бумбоксбббббоксииибоммирррбокс", "Chrome1"));
         searchEngine.add(new Article("Бумбоксбббббоксииибомбумирррбокс", "Chrome2"));
@@ -78,7 +74,7 @@ public class App{
         searchEngine.printSearch(searchEngine.search("перьев"));
         searchEngine.printSearch(searchEngine.search("Пироженое"));
         searchEngine.printSearch(searchEngine.search("забери"));
-        searchEngine.printSearch(searchEngine.search("Орехи"));
+        searchEngine.printSearch(searchEngine.search("орехи"));
 
         System.out.println();
         System.out.println("Создадим заведомо некорректные продукты");
@@ -127,6 +123,7 @@ public class App{
         System.out.println("Удаляем несуществующие продукты:");
         if (productBasket.delProduct("Пасатижи").isEmpty()) {
             System.out.println("Список пуст");
+
         }
     }
 }
