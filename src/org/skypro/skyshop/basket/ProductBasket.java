@@ -5,7 +5,7 @@ import org.skypro.skyshop.product.Product;
 import java.util.*;
 
 public class ProductBasket {
-    Map<String, List<Product>> products = new LinkedHashMap<>();
+    private Map<String, List<Product>> products = new HashMap<>();
 
     public void addProduct(Product product) {
         List<Product> list = new ArrayList<>();
@@ -52,11 +52,7 @@ public class ProductBasket {
     }
 
     public boolean findProduct (String name) {
-        if (products.containsKey(name)) {
-            return true;
-        } else {
-            return false;
-        }
+        return products.containsKey(name);
     }
 
     public List<Product> delProduct(String name) {
