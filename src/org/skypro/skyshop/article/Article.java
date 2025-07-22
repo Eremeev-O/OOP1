@@ -2,7 +2,7 @@ package org.skypro.skyshop.article;
 
 import org.skypro.skyshop.searchengine.Searchable;
 
-import java.text.MessageFormat;
+import java.util.Objects;
 
 public class Article implements Searchable {
     private final String articleTitle;
@@ -32,5 +32,17 @@ public class Article implements Searchable {
 
     public String contentType() {
         return "ARTICLE";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Article article = (Article) obj;
+        return Objects.equals(articleTitle, article.articleTitle);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(articleTitle);
     }
 }

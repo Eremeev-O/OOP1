@@ -54,7 +54,10 @@ public class App{
         searchEngine.add(new SimpleProduct("Семечки", 60));
         searchEngine.add(new DiscountedProduct("Кешью - орехи", 90, 20));
         searchEngine.add(new SimpleProduct("Печенье", 30));
+//        searchEngine.add(new SimpleProduct("Фундук - орехи", 100));
+        searchEngine.add(new SimpleProduct("Арахис - орехи", 40));
         searchEngine.add(new SimpleProduct("Фундук - орехи", 100));
+        searchEngine.add(new SimpleProduct("Миндаль - орехи", 100));
 
         searchEngine.add(new Article("Бумбоксбббббоксииибоммирррбокс", "Chrome1"));
         searchEngine.add(new Article("Бумбоксбббббоксииибомбумирррбокс", "Chrome2"));
@@ -69,11 +72,17 @@ public class App{
         System.out.println("Демонстрация поиска и вывода результата:");
 
         searchEngine.printSearch(searchEngine.search("Магазин"));
+        System.out.println();
         searchEngine.printSearch(searchEngine.search("голодный"));
+        System.out.println();
         searchEngine.printSearch(searchEngine.search("выбор"));
+        System.out.println();
         searchEngine.printSearch(searchEngine.search("перьев"));
+        System.out.println();
         searchEngine.printSearch(searchEngine.search("Пироженое"));
+        System.out.println();
         searchEngine.printSearch(searchEngine.search("забери"));
+        System.out.println();
         searchEngine.printSearch(searchEngine.search("орехи"));
 
         System.out.println();

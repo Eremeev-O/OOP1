@@ -3,34 +3,51 @@ package org.skypro.skyshop.searchengine;
 import java.util.*;
 
 public class SearchEngine {
-    List<Searchable> searchable = new ArrayList<>();
+
+    private Set<Searchable> searchable = new HashSet<>();
+
 
     public void add(Searchable obj){
         searchable.add(obj);
     }
-    public TreeMap<String, Searchable> search(String srchText){
+
+    public TreeSet<String> search(String srchText){
         int num = 0;
-        TreeMap<String, Searchable> tempTree = new TreeMap<>();
+        TreeSet<String> tempTree = new TreeSet<>(new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                if (o2.length() == o1.length()) {
+                    return o1.compareTo(o2);
+                }
+                return o2.length() - o1.length();
+            }
+        });
         Iterator<Searchable> iteratorSearch = searchable.iterator();
 
         while (iteratorSearch.hasNext()) {
             Searchable element = iteratorSearch.next();
             if (element != null &&  element.toString().contains(srchText)) {
-                if (!tempTree.containsKey(element.getSearchTerm())){
-                    tempTree.put(element.getSearchTerm(), element);
+                if (!tempTree.contains(element.getSearchTerm())){
+                    tempTree.add(element.getSearchTerm());
                 } else {
                     num++;
-                    tempTree.put(element.getSearchTerm() + "_" + num, element);
+                    tempTree.add(element.getSearchTerm() + "_" + num);
                 }
             }
         }
         return tempTree;
     }
 
-    public void printSearch(TreeMap<String, Searchable> obj){
-        for (Map.Entry<String, Searchable> element: obj.entrySet()) {
-            if (element != null) {
-                System.out.println(element.getValue().getStringRepresentation());
+    // Переделал чутка распечатку, а то после замены на TreeSet пропало одно выводимое поле
+    // Возможно есть более короткое решение. Если поделитесь - буду рад.
+    public void printSearch(TreeSet<String> obj){
+        for (String value: obj) {
+            Iterator<Searchable> iteratorSearch = searchable.iterator();
+            while (iteratorSearch.hasNext()) {
+                Searchable element = iteratorSearch.next();
+                if (element != null && element.toString().contains(value)) {
+                    System.out.println(element.getStringRepresentation());
+                }
             }
         }
     }
