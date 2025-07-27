@@ -20,35 +20,18 @@ public class ProductBasket {
     }
 
     public void printAllProductBasket() {
-        int quantity = 0;
-        for (Map.Entry<String, List<Product>> element: products.entrySet()){
-            if (element.getValue() != null) {
-                for (Product value: element.getValue()){
-                    System.out.println(value.toString());
-                    if (value.isSpecial()) {
-                        quantity++;
-                    }
-                }
-            }
-        }
-        if (!this.products.isEmpty()) {
+         if (!this.products.isEmpty()) {
+            products.values().stream().flatMap(Collection::stream).forEach(System.out::println);
+            System.out.println("Специальных товаров: " + getSpecialCount());
             System.out.println("Итого: " + basketCost());
-            System.out.println("Специальных товаров: " + quantity);
         } else {
             System.out.println("в корзине пусто");
         }
     }
 
-    public float basketCost() {
-        float summ = 0f;
-        for (Map.Entry<String, List<Product>> element: products.entrySet()){
-            if (element.getValue() != null) {
-                for (Product value: element.getValue()){
-                    summ += value.getCost();
-                }
-            }
-        }
-        return summ;
+
+    public double basketCost() {
+        return products.values().stream().flatMap(Collection::stream).mapToDouble(s -> s.getCost()).sum();
     }
 
     public boolean findProduct (String name) {
@@ -67,6 +50,9 @@ public class ProductBasket {
 
     public void basketCleaning() {
         products.clear();
+    }
+    private int getSpecialCount() {
+        return (int) products.values().stream().flatMap(Collection::stream).filter(s -> s.isSpecial()).count();
     }
 }
 

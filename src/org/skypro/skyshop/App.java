@@ -54,7 +54,6 @@ public class App{
         searchEngine.add(new SimpleProduct("Семечки", 60));
         searchEngine.add(new DiscountedProduct("Кешью - орехи", 90, 20));
         searchEngine.add(new SimpleProduct("Печенье", 30));
-//        searchEngine.add(new SimpleProduct("Фундук - орехи", 100));
         searchEngine.add(new SimpleProduct("Арахис - орехи", 40));
         searchEngine.add(new SimpleProduct("Фундук - орехи", 100));
         searchEngine.add(new SimpleProduct("Миндаль - орехи", 100));
