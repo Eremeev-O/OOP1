@@ -2,65 +2,59 @@ package org.skypro.skyshop.basket;
 
 import org.skypro.skyshop.product.Product;
 
-public class ProductBasket {
-    private final Product[] products;
+import java.util.*;
 
-    public ProductBasket() {
-        this.products = new Product[5];
-    }
+public class ProductBasket {
+    private Map<String, List<Product>> products = new HashMap<>();
 
     public void addProduct(Product product) {
-        for (int i = 0; i < this.products.length; i++) {
-            if (this.products[i] == null) {
-                this.products[i] = product;
-                    return;
-            }
+        List<Product> list = new ArrayList<>();
+        if ((products.get(product.getName()) == null)) {
+            list.add (product);
+            products.put(product.getName(), list);
+        } else {
+            list = products.get(product.getName());
+            list.add(product);
+            products.put(product.getName(), list);
         }
-        System.out.println("Невозможно добавить продукт");
     }
 
-    //  Логика распечатывания содержимого корзины работает от обратного. Если есть запись в массиве, то переменная num
-    //  не меняется и, главное! она будет всегда меньше длинны массива. Если только все данные массива упадут в null,
-    //  вот тогда num станет равна длинне массива, что и подтверждает работу данного метода на пустой, на полной и на не
-    //  заполненной корзине. Алгоритм универсальный, работает даже в случае отсутствия промежуточных значений массива
-    //  с продуктами в корзине.
     public void printAllProductBasket() {
-        int num = 0;
-        for (int i = 0; i < this.products.length; i++) {
-            if (this.products[i] != null) {
-                System.out.println(this.products[i].toString());
-            } else {
-                num++;
-            }
-        }
-        if (num != this.products.length) {
+         if (!this.products.isEmpty()) {
+            products.values().stream().flatMap(Collection::stream).forEach(System.out::println);
+            System.out.println("Специальных товаров: " + getSpecialCount());
             System.out.println("Итого: " + basketCost());
         } else {
             System.out.println("в корзине пусто");
         }
     }
-    public int basketCost() {
-        int summ = 0;
-        for (int i = 0; i < this.products.length; i++) {
-            if (this.products[i] != null) {
-                summ += this.products[i].getCost();
-            }
-        }
-        return summ;
+
+
+    public double basketCost() {
+        return products.values().stream().flatMap(Collection::stream).mapToDouble(s -> s.getCost()).sum();
     }
+
     public boolean findProduct (String name) {
-        for (int i = 0; i < this.products.length; i++) {
-            if (this.products[i] != null && this.products[i].getName().equals(name.toLowerCase())) {
-                return true;
-            }
+        return products.containsKey(name);
+    }
+
+    public List<Product> delProduct(String name) {
+        List<Product> list = new ArrayList<>();
+        if (products.containsKey(name)) {
+            List<Product> element = products.get(name);
+            list.addAll(element);
+            products.remove(name);
         }
-        return false;
+        return list;
     }
 
     public void basketCleaning() {
-        for (int i = 0; i < this.products.length; i++) {
-            this.products[i] = null;
-        }
+        products.clear();
     }
-
+    private int getSpecialCount() {
+        return (int) products.values().stream().flatMap(Collection::stream).filter(s -> s.isSpecial()).count();
+    }
 }
+
+
+
